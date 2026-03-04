@@ -2,6 +2,9 @@
 from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 
+# Timestamp único da execução do job (auditoria)
+job_run_ts = spark.sql("SELECT current_timestamp()").collect()[0][0]
+
 # ------------------------------------------
 # 1. Leitura da camada Bronze (tabela Delta)
 # ------------------------------------------
@@ -60,7 +63,7 @@ df = (
 
 df = (
     df
-    .withColumn("processed_at", F.current_timestamp())
+    .withColumn("processed_at", F.lit(job_run_ts))
     .withColumn("source_table", F.lit("bronze_orders"))
 )
 
