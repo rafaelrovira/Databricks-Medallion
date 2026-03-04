@@ -12,7 +12,17 @@ O pipeline segue as camadas:
 - BI
 - ML
 
-![Arquitetura](diagrams/medallion_architecture.png)
+```mermaid
+flowchart LR
+    A[CSV<br/>Source Data] --> B[Raw Table<br/>raw_orders]
+    B --> C[Bronze<br/>bronze_orders]
+    C --> D[Silver<br/>silver_orders]
+    D --> E1[Gold<br/>gold_revenue_by_day]
+    D --> E2[Gold<br/>gold_revenue_by_ship_mode]
+    E1 --> F[BI<br/>Databricks SQL]
+    E2 --> F
+    E1 --> G[Machine Learning<br/>Forecasting Model]
+```
 
 ## Fluxo de Dados
 CSV → Raw → Bronze → Silver → Gold → BI / ML
