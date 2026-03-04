@@ -36,10 +36,13 @@ CSV → Raw → Bronze → Silver → Gold → BI / ML
 
 ## Camada BI
 Visualizações construídas no Databricks SQL a partir da camada Gold:
+
 - Faturamento diário
+  ![BI](bi/sales_day.png)
+  
 - Faturamento por modo de envio
 
-![BI](bi/revenue_by_day.png)
+![BI](bi/by_ship_mode.png)
 
 ## Machine Learning
 Modelo simples de regressão linear treinado a partir da camada Gold para prever faturamento diário.
